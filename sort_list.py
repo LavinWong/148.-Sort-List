@@ -9,13 +9,14 @@ class Solution(object):
         if not head or not head.next:
             return head
         
-        #Split the list
+        #Split the list to two list, the one is head to the mid and other is mid+1 to the rest.
         left = head
         right = self.getMid(head)
         tmp = right.next
         right.next = None
         right = tmp
-
+        
+        #Split the list again, until the list just have one element./
         left = self.sortList(left)
         right = self.sortList(right)
 
@@ -31,9 +32,10 @@ class Solution(object):
             fast = fast.next.next
         return slow
 
+
     def merge(self, left, right):
         tail = dummy = ListNode()
-
+        #We add the element one by one, so when it finshed it will be sorted.
         while left and right:
             if left.val<right.val:
                 tail.next = left
